@@ -3,7 +3,7 @@ function check() {
     let isAuthentic = false;
     let password = document.getElementById("password").value;
     let user = document.getElementById("username").value;
-    let userArray = [{username:"ramdisi",password:"123",role:"admin"},]
+    let userArray = [{username:"ramdisi",password:"123",role:"admin"},{username:"nimal",password:"456",role:"sales"}];
     userArray.forEach(element => {
         if(element.username==user & element.password==password){
             isAuthentic=true;
@@ -20,4 +20,7 @@ function check() {
     }else{
         document.getElementById("warning").innerHTML='<p style="color: red ;">Incorrect Password Or UserName</p>';
     }
+}
+function logout() {
+    window.location.replace("index.html");
 }
