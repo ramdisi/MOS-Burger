@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin Dashboard</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr" crossorigin="anonymous">
-
 </head>
 <body class="bg-dark-subtle">
 <nav class="navbar navbar-expand-lg bg-body-tertiary">
@@ -19,7 +18,51 @@
     </div>
   </div>
 </nav>
-
+<div class="container">
+  <div class="row">
+    <div class="form-group col-md-6">
+      <label for="itemid">Item ID</label>
+      <input type="text" class="form-control" id="itemid" placeholder="Item Id">
+    </div>
+    <div class="form-group col-md-6">
+      <label for="itemname">Item Name</label>
+      <input type="text" class="form-control" id="itemname" placeholder="Item Name">
+    </div>
+  </div>
+</div>
+<div class="container">
+  <div class="row">
+    <div class="form-group col-md-6">
+      <label for="discount">Discount</label>
+      <input type="number" class="form-control" id="discount" placeholder="discount" onchange="validator(0,100,'discount')">
+    </div>
+    <div class="form-group col-md-6">
+      <label for="price">Price</label>
+      <input type="number" class="form-control" id="price" placeholder="price" onchange="validator(0,-1,'price')">
+    </div>
+    </div>
+</div>
+<div class="container">
+  <div class="row">
+    <div class="form-group col-md-6">
+      <label for="doe">Expire Date</label>
+      <input type="date" class="form-control" id="doe">
+    </div>
+    <div class="form-group col-md-6">
+      <label for="type">Food Type</label>
+      <select id="type" class="form-control">
+          <option selected value="beverages">Beverages</option>
+          <option value="burgers">Burgers</option>
+          <option value="submarines">Submarines</option>
+          <option value="fries">Fries</option>
+          <option value="pasta">Pasta</option>
+          <option value="chicken">Chicken</option>
+        </select>
+    </div>
+  </div>
+    <button type="submit" class="btn btn-danger m-4 " onclick="addItem()">Add Item</button>
+</div>
+<hr>
 <div class="card text-bg-danger position-absolute bottom-0" style="width: 100%;">
   <div class="card-header">2025 &copy;Ramdisi Abeywickrama *  All rights reserved. </div>
   <div class="card-body">
@@ -29,5 +72,6 @@
 </div>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js" integrity="sha384-ndDqU0Gzau9qJ1lfW4pNLlhNTkCfHzAVBReH9diLvGRem5+R9g2FzA8ZGN954O5Q" crossorigin="anonymous"></script>
 <script src="accessManger.js"></script>
+<script src="addItem.js"></script>
 </body>
 </html>

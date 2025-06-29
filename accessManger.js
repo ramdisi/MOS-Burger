@@ -1,4 +1,4 @@
-function check() {
+function login() {
     let role;
     let isAuthentic = false;
     let password = document.getElementById("password").value;
