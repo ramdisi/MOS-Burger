@@ -1,9 +1,12 @@
+if(localStorage.getItem("userArray")==null){
+    localStorage.setItem("userArray",JSON.stringify([{username:"ramdisi",password:"123",role:"admin"},{username:"nimal",password:"456",role:"sales"}]));
+}
 function login() {
     let role;
     let isAuthentic = false;
     let password = document.getElementById("password").value;
     let user = document.getElementById("username").value;
-    let userArray = [{username:"ramdisi",password:"123",role:"admin"},{username:"nimal",password:"456",role:"sales"}];
+    let userArray = JSON.parse(localStorage.getItem("userArray"));
     userArray.forEach(element => {
         if(element.username==user & element.password==password){
             isAuthentic=true;
@@ -23,4 +26,19 @@ function login() {
 }
 function logout() {
     window.location.replace("index.html");
+}
+function openPOS() {
+    window.location.replace("pos.html")
+}
+function openUpdateCustomerArea() {
+    //
+}
+function openDeleteCustomerArea() {
+    //
+}
+function openAddCustomerArea() {
+    //
+}
+function openCheckOut() {
+    window.location.replace("checkout.html")
 }

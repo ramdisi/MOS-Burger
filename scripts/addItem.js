@@ -19,8 +19,6 @@ function addItem() {
     if (localStorage.getItem("itemArray")!=null) {
         itemArray = JSON.parse(localStorage.getItem("itemArray"));
         itemArray.push(item);
-        console.log(itemArray);
-        
     }else{
         itemArray=[item,];//if local storage is empty
     }
