@@ -28,14 +28,5 @@ function logout() {
     window.location.replace("index.html");
 }
 function openPOS() {
-    window.location.replace("pos.html")
-}
-function openUpdateCustomerArea() {
-    //
-}
-function openDeleteCustomerArea() {
-    //
-}
-function openAddCustomerArea() {
-    //
+    open("pos.html","_blank");
 }

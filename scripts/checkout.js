@@ -1,5 +1,9 @@
+const dateObject = new Date();
+let date = dateObject.toISOString();
+date = date.split("T");
 loadBill();//it calls when page is loads first
 function loadBill(){
+    let billedCustomerDetails = JSON.parse(localStorage.getItem("billedCustomerDetails"))
     let itemArray = JSON.parse(localStorage.getItem("itemArray"));
     let cartForCheckout = JSON.parse(localStorage.getItem('cart'));
     let detailsForBilling=[];
@@ -25,11 +29,12 @@ function loadBill(){
     let html = `
     <div class="card-body">
     <h5 class="card-title text-center text-danger" style="text-align: center;">MOS Burgers</h5>
-    <pre class="card-subtitle mb-2 text-body-secondary" style="font-size: large;font-weight: bold;">Customer Name         :</pre>
-    <pre class="card-subtitle mb-2 text-body-secondary" style="font-size: large;font-weight: bold;">Customer Telephone-No : </pre>
-    <pre class="card-subtitle mb-2 text-body-secondary" style="font-size: large;font-weight: bold;">Special Discounts     : </pre>
-    <pre class="card-subtitle mb-2 text-body-secondary" style="font-size: large;font-weight: bold;">Billed Date & Time    : </pre>
-    <table class="table">
+    <pre class="card-subtitle mb-2 text-body-secondary" style="font-size: large;font-weight: bold;">Customer Name         : ${billedCustomerDetails.customerName}</pre>
+    <pre class="card-subtitle mb-2 text-body-secondary" style="font-size: large;font-weight: bold;">Customer Telephone-No : ${billedCustomerDetails.customerTel}</pre>
+    <pre class="card-subtitle mb-2 text-body-secondary" style="font-size: large;font-weight: bold;">Special Discounts     : ${billedCustomerDetails.discount}%</pre>
+    <pre class="card-subtitle mb-2 text-body-secondary" style="font-size: large;font-weight: bold;">Billed Date & Time    : ${date[0]+" "+date[1].split(".")[0]}</pre>
+    <div style="overflow: auto">
+    <table class="table" width="100%">
     <thead>
       <tr>
         <th scope="col">#</th>
@@ -59,21 +64,14 @@ function loadBill(){
     html+=`
     </tbody>
   </table>
+  </div>
 <table style="margin-left: 5%;margin-top: 30px;">
     <tr>
       <td>
         <h6 class="card-subtitle mb-2 text-body-secondary" >Net Total</h6>
       </td>
       <td>
-        <h6>: Rs.${(netTotal%100)*100}.00 </h6>
-      </td>
-    </tr>
-    <tr>
-      <td>
-        <h6 class="card-subtitle mb-2 text-body-secondary" >Special Discounts</h6>
-      </td>
-      <td>
-        <h6>: 10%</h6>
+        <h6>: Rs.${netTotal.toFixed(2)} </h6>
       </td>
     </tr>
     <tr>
@@ -81,23 +79,7 @@ function loadBill(){
         <h6 class="card-subtitle mb-2 text-body-secondary" >Total After Discount&nbsp;</h6>
       </td>
       <td>
-        <h6>: 10%</h6>
-      </td>
-    </tr>
-    <tr>
-      <td>
-        <h6 class="card-subtitle mb-2 text-body-secondary" >Paid Amount</h6>
-      </td>
-      <td>
-        <h6>: Rs.15000.00</h6>
-      </td>
-    </tr>
-    <tr>
-      <td>
-        <h6 class="card-subtitle mb-2 text-body-secondary" >Balance Amount</h6>
-      </td>
-      <td>
-        <h6>: 10%</h6>
+        <h6>: Rs.${(netTotal-netTotal*billedCustomerDetails.discount/100).toFixed(2)}</h6>
       </td>
     </tr>
     <tr>
@@ -105,7 +87,7 @@ function loadBill(){
         <h6 class="card-subtitle mb-2 text-body-secondary" >You Saved today</h6>
       </td>
       <td>
-        <h6>: Rs.300</h6>
+        <h6>: Rs.${(savedMoney+netTotal*billedCustomerDetails.discount/100).toFixed(2)}</h6>
       </td>
     </tr>
   </table>
@@ -115,6 +97,7 @@ function loadBill(){
     `;
     document.getElementById("billArea").innerHTML=html;
     localStorage.removeItem("cart");
+    localStorage.removeItem("billedCustomerDetails");
 }
 
 function error() {

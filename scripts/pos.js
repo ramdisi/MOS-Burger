@@ -7,7 +7,6 @@ let table;
 const dateObject = new Date();
 let date = dateObject.toISOString();
 date = date.split("T")[0].split("-");
-firstLoad();
 // codes for first load of the page
 function firstLoad() {
     itemArray = JSON.parse(localStorage.getItem("itemArray"));//to get latest state
@@ -90,5 +89,7 @@ function addToCart(itemCode){
 function openCheckOut() {
     if (localStorage.getItem('cart')!="" & localStorage.getItem('cart')!=null) { 
         window.location.assign("checkout.html");//if no item added then cant access checkout
+        document.getElementById("cusTel").value="";
+        document.getElementById("cusName").value="";
     }
 }

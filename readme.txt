@@ -38,3 +38,8 @@ cart object model - {
         itemId:______,
         qty:______,
 }
+
+customer object model - {
+    customerName:______,
+    customerTel:______
+}

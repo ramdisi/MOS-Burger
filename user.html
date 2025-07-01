@@ -3,11 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>User Workspace</title>
+    <title>Cashier Workspace</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr" crossorigin="anonymous">
-    <style>
-        button{width: 95%;margin:20px;line-height: 650%;}
-    </style>
 </head>
 <body class="bg-dark-subtle">
 <nav class="navbar navbar-expand-lg bg-body-tertiary">
@@ -22,12 +19,50 @@
   </div>
 </nav>
   <div class="flex-column">
-      <button onclick="openPOS()">Open POS App</button>
-      <button onclick="openUpdateCustomerArea()">Open Order Update Area</button>
-      <button onclick="openDeleteCustomerArea()">Open Delete Order Area</button>
-      <button onclick="openAddCustomerArea()">Open Add Customer Area</button>
+      <button onclick="openPOS()" style="width: 95%;margin:20px;line-height: 650%;">Open POS App</button>
+      <div class="card" style="max-width: 96%;margin: 2%;">
+        <div class="row g-0">
+          <div class="col-md-4">
+            <img src="images/order.png" class="img-fluid rounded-start p-1" alt="Order Placing" width="250px">
+          </div>
+          <div class="col-md-8">
+            <div class="card-body">
+              <h5 class="card-title m-3">Edit and Delete Order</h5>
+              <span class="input-group-text m-2" id="basic-addon1">Telephone Number&nbsp;
+              <input type="text" class="form-control" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1">
+              </span>
+              <span class="input-group-text m-2" id="basic-addon1">Customer Name&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              <input type="text" class="form-control" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1">
+              </span>
+              Other details should display here?
+              <button class="btn btn-danger m-2">Edit Order Now</button>
+              <button class="btn btn-danger m-2">Delete Order Now</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="card" style="max-width: 96%;margin: 2%;">
+        <div class="row g-0">
+          <div class="col-md-4">
+            <img src="images/order.png" class="img-fluid rounded-start p-1" alt="Order Placing" width="250px">
+          </div>
+          <div class="col-md-8">
+            <div class="card-body">
+              <h5 class="card-title m-3">Add Customer Details</h5>
+              <p id="warntext" class="text-danger fs-6"></p>
+              <span class="input-group-text m-2" id="basic-addon1">Telephone Number&nbsp;
+              <input type="tel" class="form-control" placeholder="Telephone no" aria-label="Username" aria-describedby="basic-addon1" id="cusTel">
+              </span>
+              <span class="input-group-text m-2" id="basic-addon1">Customer Name&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              <input type="text" class="form-control" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1" id="cusName">
+              </span>
+              <button class="btn btn-danger m-2" onclick="AddCustomer()">Add New Customer</button>
+            </div>
+          </div>
+        </div>
+      </div>
   </div>
-<div class="card text-bg-danger position-absolute bottom-0" style="width: 100%;">
+<div class="card text-bg-danger " style="width: 100%;">
   <div class="card-header">2025 &copy;Ramdisi Abeywickrama *  All rights reserved. </div>
   <div class="card-body">
     <h5 class="card-title">Contact</h5>
@@ -36,5 +71,6 @@
 </div>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js" integrity="sha384-ndDqU0Gzau9qJ1lfW4pNLlhNTkCfHzAVBReH9diLvGRem5+R9g2FzA8ZGN954O5Q" crossorigin="anonymous"></script>
 <script src="scripts/accessManger.js"></script>
+<script src="scripts/dataManger.js"></script>
 </body>
 </html>
