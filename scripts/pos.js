@@ -3,6 +3,7 @@ let foundIndexes ;
 let cart = [];
 let itemCount=0;
 let table;
+let amount=0;
 //get current date
 const dateObject = new Date();
 let date = dateObject.toISOString();
@@ -55,7 +56,7 @@ function showResults() {
                 <span class="input-group-text">
                     Number Of Items&nbsp;<input type="number" class="form-control" id="${itemArray[element].itemCode}Qty" value="1">
                 </span>
-                <button class="btn btn-danger mt-2" onclick="addToCart('${itemArray[element].itemCode}')">Add to Cart</button>
+                <button class="btn btn-danger mt-2" onclick="addToCart('${itemArray[element].itemCode}')" ${warning==" Expired "?"disabled":""}>Add to Cart</button>
             </div>
         </div>
         </div>
@@ -72,24 +73,64 @@ function showResults() {
         }
     });
     document.getElementById("itemDisplayArea").innerHTML = itemDetailsHTML;
+    document.getElementById("transactionArea").innerHTML=`
+    <div class="card" style="max-width: 96%;margin: 2%;">
+        <div class="card-body">
+            <div class="container text-center">
+            <div class="row">
+                <div class="col">
+                <span class="input-group-text" id="basic-addon1">Amount : Rs.
+                <input value="0" type="number" class="form-control text-danger" aria-describedby="basic-addon1" id="amount" readonly>
+                </span>
+                </div>
+                <div class="col">
+                <p id="errorBalance" class="text-danger"></p>
+                <span class="input-group-text" id="basic-addon1" >Payment(Cash) : Rs.
+                <input value="0" type="number" class="form-control text-danger" aria-describedby="basic-addon1" id="payment">
+                </span>
+                </div>
+            </div>
+            <button class="btn btn-success m-2" onclick="cancelOrder()">Cancel This Order</button>
+            </div>
+        </div>
+    </div>
+    `;
 }
 
 function addToCart(itemCode){
+    let discount;
+    let price ;
+    let specialDiscount = JSON.parse(localStorage.getItem("billedCustomerDetails"));
+    specialDiscount = specialDiscount.discount;
     let quantity = document.getElementById(itemCode+"Qty").value;
     let item = {
         itemId:itemCode,
         qty:quantity,
     }
+    itemArray.forEach(element => {
+        if(element.itemCode==itemCode){
+            discount = element.discount;
+            price = element.price;
+        }
+    });
+    amount+=((price-price*discount/100)*quantity)-((price-price*discount/100)*quantity)*specialDiscount/100;
     cart.push(item);
     itemCount++;
     document.getElementById("itemcount").innerHTML="&nbsp;"+itemCount+"&nbsp;"
+    document.getElementById("amount").value = amount.toFixed(2);
     localStorage.setItem("cart",JSON.stringify(cart));
 }
 
 function openCheckOut() {
-    if (localStorage.getItem('cart')!="" & localStorage.getItem('cart')!=null) { 
+    let amount = document.getElementById("amount").value;
+    let payment = document.getElementById("payment").value;
+    if (localStorage.getItem('cart')!="" & localStorage.getItem('cart')!=null & payment>=amount & amount!=0) {
+        localStorage.setItem("transaction",JSON.stringify([amount,payment]));//store transaction for billing 
         window.location.assign("checkout.html");//if no item added then cant access checkout
         document.getElementById("cusTel").value="";
         document.getElementById("cusName").value="";
+    }
+    if(payment<amount){
+        document.getElementById("errorBalance").innerText = "Insufficiant Balance!Enter payment again";
     }
 }

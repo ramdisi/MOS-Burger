@@ -39,12 +39,14 @@
         <span class="input-group-text m-2" id="basic-addon1">Special Discounts&nbsp;&nbsp;&nbsp;
         <input value="0" type="number" class="form-control" aria-describedby="basic-addon1" id="discount">
         %</span>
-        <button class="btn btn-danger m-2" onclick="placeOrder()">Place Order Now</button>
+        <button class="btn btn-danger m-2" onclick="placeOrder()" id="placeOrderButton">Place Order Now</button>
       </div>
     </div>
   </div>
 </div>
-
+<div id="transactionArea">
+  
+</div>
 <div class="input-group m-1">
   <span class="input-group-text" id="inputGroup-sizing-default" style="width: 30%;"><img src="images/search.png" alt="search" style="width: 40px;"></span>
   <input oninput="dynamicSearch()"  id="searchbar" type="text" placeholder="Dynamically search based on Item id or Item name" class="form-control me-3" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" disabled>

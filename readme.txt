@@ -8,20 +8,13 @@ order object model - {
     orderID:______,
     customerTel:______,
     customerName:______,
-    orderTime&Date:______,
+    orderTime&Date:[Date,time]],
     itemList:[{
         itemCode:______,
         priceForItem:______,
         discount:______,
         quantity:______
-    },
-    {
-        itemCode:______,
-        priceForItem:______,
-        discount:______,
-        quantity:______
     },] ,
-    orderTotal:______,
     orderDiscount:______
 }
 

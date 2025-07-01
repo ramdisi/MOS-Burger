@@ -31,7 +31,7 @@ function AddCustomer() {
 }
 
 function placeOrder(){
-    localStorage.setItem("OrderNumber",++OrderNumber);//if close window it doesnt affect to itemlist 
+    localStorage.setItem("OrderNumber",JSON.stringify(++OrderNumber));//if close window it doesnt affect to itemlist 
     OrderId = "I"+OrderNumber.toString().padStart(4, "0");
     let cusName = document.getElementById("cusName").value;
     let cusTel = document.getElementById("cusTel").value;
@@ -46,11 +46,13 @@ function placeOrder(){
     firstLoad();//then load content
     document.getElementById("cusName").disabled = true;
     document.getElementById("cusTel").disabled = true;
+    document.getElementById("placeOrderButton").disabled = true;
     document.getElementById("searchbar").disabled = false;
     localStorage.setItem("billedCustomerDetails",JSON.stringify({
         customerName:cusName,
         customerTel:cusTel,
-        discount:discount
+        discount:discount,
+        orderId:OrderId
     }));
 }
 
@@ -77,4 +79,9 @@ function check() {
                 document.getElementById("cusName").value = cusNameTXT ;
         }
     } 
+}
+
+function cancelOrder() {
+    localStorage.setItem("OrderNumber",JSON.stringify(--OrderNumber));
+    window.location.reload();
 }

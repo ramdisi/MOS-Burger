@@ -1,8 +1,13 @@
 const dateObject = new Date();
 let date = dateObject.toISOString();
 date = date.split("T");
+let orderArray = [];
+if(localStorage.getItem("orderArray")!=null){
+    orderArray = JSON.parse(localStorage.getItem("orderArray"));
+}
 loadBill();//it calls when page is loads first
 function loadBill(){
+    let transaction = JSON.parse(localStorage.getItem("transaction"));
     let billedCustomerDetails = JSON.parse(localStorage.getItem("billedCustomerDetails"))
     let itemArray = JSON.parse(localStorage.getItem("itemArray"));
     let cartForCheckout = JSON.parse(localStorage.getItem('cart'));
@@ -29,6 +34,7 @@ function loadBill(){
     let html = `
     <div class="card-body">
     <h5 class="card-title text-center text-danger" style="text-align: center;">MOS Burgers</h5>
+    <pre class="card-subtitle mb-2 text-body-secondary" style="font-size: large;font-weight: bold;">Order ID              : ${billedCustomerDetails.orderId}</pre>
     <pre class="card-subtitle mb-2 text-body-secondary" style="font-size: large;font-weight: bold;">Customer Name         : ${billedCustomerDetails.customerName}</pre>
     <pre class="card-subtitle mb-2 text-body-secondary" style="font-size: large;font-weight: bold;">Customer Telephone-No : ${billedCustomerDetails.customerTel}</pre>
     <pre class="card-subtitle mb-2 text-body-secondary" style="font-size: large;font-weight: bold;">Special Discounts     : ${billedCustomerDetails.discount}%</pre>
@@ -56,7 +62,7 @@ function loadBill(){
             <td>${element.itemName}</td>
             <td>${element.quantity}</td>
             <td>${element.price}.00</td>
-            <td>${element.discountForItem}</td>
+            <td>${element.discountForItem}%</td>
             <td>${element.total}.00</td>
         </tr>
         `;
@@ -83,6 +89,24 @@ function loadBill(){
       </td>
     </tr>
     <tr>
+    <tr>
+      <td>
+        <h6 class="card-subtitle mb-2 text-body-secondary" >Your Payment(Cash)&nbsp;</h6>
+      </td>
+      <td>
+        <h6>: Rs.${transaction[1]}</h6>
+      </td>
+    </tr>
+    <tr>
+    <tr>
+      <td>
+        <h6 class="card-subtitle mb-2 text-body-secondary" >Balance &nbsp;</h6>
+      </td>
+      <td>
+        <h6>: Rs.${transaction[1]-transaction[0]}</h6>
+      </td>
+    </tr>
+    <tr>
       <td>
         <h6 class="card-subtitle mb-2 text-body-secondary" >You Saved today</h6>
       </td>
@@ -95,11 +119,34 @@ function loadBill(){
   <p style="text-align: center;">RamdisiAbeywickrama Tech Solutions&copy;</p>
   </div>
     `;
+    saveOrderDetails(detailsForBilling,billedCustomerDetails,date);
     document.getElementById("billArea").innerHTML=html;
+    document.getElementById("goBackButton").innerHTML='<button class="btn btn-danger m-5" onclick="goBack()">Place Another Order</button>';
     localStorage.removeItem("cart");
     localStorage.removeItem("billedCustomerDetails");
 }
 
-function error() {
+function goBack() {
     window.location.replace("pos.html");//if any error has let order again
+}
+
+function saveOrderDetails(detailsForBilling,billedCustomerDetails,date) {
+    let itemlist = [];
+    detailsForBilling.forEach(element => {
+        itemlist.push({
+            itemCode:element.itemCode,
+            priceForItem:element.price,
+            discount:element.discountForItem,
+            quantity:element.quantity
+        });
+    });
+    orderArray.push({
+        orderID:billedCustomerDetails.orderId,
+        customerTel:billedCustomerDetails.customerTel,
+        customerName:billedCustomerDetails.customerName,
+        orderTimeDate:date,
+        itemList:itemlist,
+        orderDiscount:billedCustomerDetails.discount
+    });
+    localStorage.setItem("orderArray",JSON.stringify(orderArray));
 }
