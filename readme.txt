@@ -33,3 +33,8 @@ foodItem object model - {
     type:______
     price:______
 }
+
+cart object model - {
+        itemId:______,
+        qty:______,
+}

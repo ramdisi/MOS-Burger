@@ -39,6 +39,3 @@ function openDeleteCustomerArea() {
 function openAddCustomerArea() {
     //
 }
-function openCheckOut() {
-    window.location.replace("checkout.html")
-}
