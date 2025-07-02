@@ -22,6 +22,7 @@ function loadBill(){
             itemCount:itemCount,
             itemCode:itemArray[index].itemCode,
             itemName:itemArray[index].itemName,
+            itemType:itemArray[index].type,
             quantity:orderedItem.qty,
             discountForItem:itemArray[index].discount,
             price:itemArray[index].price,
@@ -103,7 +104,7 @@ function loadBill(){
         <h6 class="card-subtitle mb-2 text-body-secondary" >Balance &nbsp;</h6>
       </td>
       <td>
-        <h6>: Rs.${transaction[1]-transaction[0]}</h6>
+        <h6>: Rs.${(transaction[1]-transaction[0]).toFixed(2)}</h6>
       </td>
     </tr>
     <tr>
@@ -124,6 +125,7 @@ function loadBill(){
     document.getElementById("goBackButton").innerHTML='<button class="btn btn-danger m-5" onclick="goBack()">Place Another Order</button>';
     localStorage.removeItem("cart");
     localStorage.removeItem("billedCustomerDetails");
+    document.getElementById("downloadButton").disabled = false;
 }
 
 function goBack() {
@@ -137,7 +139,8 @@ function saveOrderDetails(detailsForBilling,billedCustomerDetails,date) {
             itemCode:element.itemCode,
             priceForItem:element.price,
             discount:element.discountForItem,
-            quantity:element.quantity
+            quantity:element.quantity,
+            type:element.itemType
         });
     });
     orderArray.push({
@@ -149,4 +152,9 @@ function saveOrderDetails(detailsForBilling,billedCustomerDetails,date) {
         orderDiscount:billedCustomerDetails.discount
     });
     localStorage.setItem("orderArray",JSON.stringify(orderArray));
+}
+
+function generatePDF(){
+  const element = document.getElementById("billArea");
+  html2pdf().set({ filename:"MOS-Burgers-Bill"+date[0]+"-"+date[1].split(".")[0]+".pdf",}).from(element).save();
 }

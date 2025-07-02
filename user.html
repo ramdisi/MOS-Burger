@@ -27,27 +27,6 @@
           </div>
           <div class="col-md-8">
             <div class="card-body">
-              <h5 class="card-title m-3">Edit and Delete Order</h5>
-              <span class="input-group-text m-2" id="basic-addon1">Telephone Number&nbsp;
-              <input type="text" class="form-control" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1">
-              </span>
-              <span class="input-group-text m-2" id="basic-addon1">Customer Name&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-              <input type="text" class="form-control" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1">
-              </span>
-              Other details should display here?
-              <button class="btn btn-danger m-2">Edit Order Now</button>
-              <button class="btn btn-danger m-2">Delete Order Now</button>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="card" style="max-width: 96%;margin: 2%;">
-        <div class="row g-0">
-          <div class="col-md-4">
-            <img src="images/order.png" class="img-fluid rounded-start p-1" alt="Order Placing" width="250px">
-          </div>
-          <div class="col-md-8">
-            <div class="card-body">
               <h5 class="card-title m-3">Add Customer Details</h5>
               <p id="warntext" class="text-danger fs-6"></p>
               <span class="input-group-text m-2" id="basic-addon1">Telephone Number&nbsp;
@@ -58,6 +37,32 @@
               </span>
               <button class="btn btn-danger m-2" onclick="AddCustomer()">Add New Customer</button>
             </div>
+          </div>
+        </div>
+      </div>
+      <div class="card" style="max-width: 96%;margin: 2%;">
+        <div class="card-body">
+          <h5 class="m-3">Delete & Edit Customer Details</h5>
+          <div class="input-group m-1">
+            <span class="input-group-text" id="inputGroup-sizing-default" style="width: 30%;"><img src="images/search.png" alt="search" style="width: 40px;"></span>
+            <input id="searchbar-customer" type="text" placeholder="Enter Customer name or Telephone number" class="form-control me-3" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+          </div>
+          <p class="text-danger" id="massage-pane-customer"></p>
+          <div id="customer-pane">
+              <button class="btn btn-danger mt-3" onclick="searchCustomer()">Search Customer Details</button>
+          </div>
+        </div>
+      </div>
+      <div class="card" style="max-width: 96%;margin: 2%;">
+        <div class="card-body">
+          <h5 class="m-3">Delete & Edit & View Order Details</h5>
+          <div class="input-group m-1">
+            <span class="input-group-text" id="inputGroup-sizing-default" style="width: 30%;"><img src="images/search.png" alt="search" style="width: 40px;"></span>
+            <input id="searchbar-order" type="text" placeholder="Enter Tel-No or OrderID" class="form-control me-3" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" style="text-transform: uppercase;">
+          </div>
+          <p class="text-danger" id="massage-pane-order"></p>
+          <div id="order-pane">
+              <button class="btn btn-danger mt-3" onclick="searchOrder()">Search Order Details</button>
           </div>
         </div>
       </div>

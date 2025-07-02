@@ -84,13 +84,13 @@ function showResults() {
                 </span>
                 </div>
                 <div class="col">
-                <p id="errorBalance" class="text-danger"></p>
                 <span class="input-group-text" id="basic-addon1" >Payment(Cash) : Rs.
                 <input value="0" type="number" class="form-control text-danger" aria-describedby="basic-addon1" id="payment">
                 </span>
                 </div>
             </div>
             <button class="btn btn-success m-2" onclick="cancelOrder()">Cancel This Order</button>
+            <p id="errorBalance" class="text-danger"></p>
             </div>
         </div>
     </div>

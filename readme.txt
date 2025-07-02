@@ -13,7 +13,8 @@ order object model - {
         itemCode:______,
         priceForItem:______,
         discount:______,
-        quantity:______
+        quantity:______,
+        type:______
     },] ,
     orderDiscount:______
 }
