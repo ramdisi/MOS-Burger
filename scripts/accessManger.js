@@ -1,4 +1,4 @@
-if(localStorage.getItem("userArray")==null){
+if(localStorage.getItem("userArray")== null){
     localStorage.setItem("userArray",JSON.stringify([{username:"admin",password:"123",role:"admin"},{username:"user",password:"456",role:"sales"}]));
 }
 function login() {

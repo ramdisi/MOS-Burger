@@ -27,14 +27,14 @@
     </div>
     <div class="col-md-8">
       <div class="card-body">
-        <h5 class="card-title m-3">Order ID : </h5>
+        <h5 class="card-title m-3"  id ="orderId"></h5>
         <p id="warntext" class="text-danger"></p>
         <span class="input-group-text m-2" id="basic-addon1">Telephone Number&nbsp;
         <input id="cusTel" type="text" class="form-control" placeholder="Telephone number" aria-describedby="basic-addon1" maxlength="10" onchange="check()">
         </span>
         <p style="color: rgb(15, 233, 33);font-weight: 600;" id="userNametxt"></p>
         <span class="input-group-text m-2" id="basic-addon1">Customer Name&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        <input id="cusName" type="text" class="form-control" placeholder="name" aria-describedby="basic-addon1">
+        <input id="cusName" type="text" class="form-control" placeholder="name" aria-describedby="basic-addon1" onfocus="getOrderId()">
         </span>
         <span class="input-group-text m-2" id="basic-addon1">Special Discounts&nbsp;&nbsp;&nbsp;
         <input value="0" type="number" class="form-control" aria-describedby="basic-addon1" id="discount">
@@ -55,6 +55,7 @@
     
 </div>
     <script src="scripts/pos.js"></script>
+    <script src="scripts/accessManger.js"></script>
     <script src="scripts/dataManger.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js" integrity="sha384-ndDqU0Gzau9qJ1lfW4pNLlhNTkCfHzAVBReH9diLvGRem5+R9g2FzA8ZGN954O5Q" crossorigin="anonymous"></script>
 </body>

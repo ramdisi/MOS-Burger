@@ -30,7 +30,12 @@ function AddCustomer() {
     document.getElementById("cusTel").value="";
     document.getElementById("cusName").value="";
 }
-
+function getOrderId(){
+    console.log("load");
+    
+    OrderId = "I"+(OrderNumber+1).toString().padStart(4, "0");
+    document.getElementById("orderId").innerText = "Order ID : "+OrderId;
+}
 function placeOrder(){
     localStorage.setItem("OrderNumber",JSON.stringify(++OrderNumber));//if close window it doesnt affect to itemlist 
     OrderId = "I"+OrderNumber.toString().padStart(4, "0");
@@ -79,7 +84,7 @@ function check() {
                 document.getElementById("cusName").disabled = isContain;//if contains then disable=true
                 document.getElementById("cusName").value = cusNameTXT ;
         }
-    } 
+    }
 }
 
 function cancelOrder() {
