@@ -26,6 +26,7 @@ function addItem() {
         itemArray=[item,];//if local storage is empty
     }
     localStorage.setItem("itemArray",JSON.stringify(itemArray))
+    window.location.reload();
 }
 function validator(lowerLimit ,upperLimit,id) {
     let value = document.getElementById(id).value;
